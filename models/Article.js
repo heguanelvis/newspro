@@ -3,11 +3,15 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 let ArticleSchema = new Schema({
-    title: {
+    headline: {
         type: String,
         required: true
     },
-    link: {
+    summary:{
+        type: String,
+        required: true
+    },
+    url: {
         type: String,
         required: true
     },

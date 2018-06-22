@@ -1,18 +1,16 @@
-require("dotenv").config();
-var express = require('express');
-var path = require('path');
-var mongoose = require('mongoose');
-var logger = require("morgan");
-var expressHandlebars = require('express-handlebars');
-var bodyParser = require('body-parser');
+require('dotenv').config();
+const express = require('express');
+const logger = require('morgan');
+const expressHandlebars = require('express-handlebars');
+const bodyParser = require('body-parser');
 
-var PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8080;
 
-var app = express();
+const app = express();
 
 
-app.use(express.static("public"));
-app.use(logger("dev"));
+app.use(express.static('public'));
+app.use(logger('dev'));
 
 app.engine('handlebars', expressHandlebars({
     defaultLayout: 'main'
@@ -22,25 +20,13 @@ app.set('view engine', 'handlebars');
 app.use(bodyParser.urlencoded({
     extended: true
 }));
-
-// Local Mongo Database
-var db = 'mongodb://localhost/CrazyNewsifier';
-
-mongoose.connect(db, function (err) {
-
-    if (err) {
-        console.log(err);
-    } else {
-        console.log('mongoose connection is sucessful');
-    }
-
-});
+app.use(bodyParser.json());
 
 //////////////////////////////////////////Routes///////////////////////////////////////////////
-
+require("./routes/api-routes")(app);
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
-app.listen(PORT, function () {
-    console.log("App running on port " + PORT + "!");
+app.listen(PORT, () => {
+    console.log('App running on port ' + PORT + '!');
 });

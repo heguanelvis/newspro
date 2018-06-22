@@ -6,7 +6,7 @@ let CommentSchema = new Schema({
     name: {
         type: String
     },
-    body: {
+    content: {
         type: String,
         required: true
     }
