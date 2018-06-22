@@ -26,7 +26,9 @@ module.exports = (app) => {
     })
 
     app.get('/scrape', (req, res) => {
-
+        request(newsUrl, (error, scrapeResult, html) => {
+            const $ = cheerio.load(html);
+        })
     })
 
 }
