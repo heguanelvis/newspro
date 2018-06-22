@@ -21,8 +21,12 @@ mongoose.connect('mongodb://localhost/CrazyNewsifier', (error) => {
 
 module.exports = (app) => {
 
-    app.get("/", (request, response) => {
-        response.send("Finally It works!")
+    app.get('/', (req, res) => {
+        res.send("Finally It works!")
+    })
+
+    app.get('/scrape', (req, res) => {
+
     })
 
 }
