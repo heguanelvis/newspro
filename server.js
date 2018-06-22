@@ -1,6 +1,8 @@
+require("dotenv").config();
 var express = require('express');
 var path = require('path');
 var mongoose = require('mongoose');
+var logger = require("morgan");
 var expressHandlebars = require('express-handlebars');
 var bodyParser = require('body-parser');
 
@@ -10,6 +12,7 @@ var app = express();
 
 
 app.use(express.static("public"));
+app.use(logger("dev"));
 
 app.engine('handlebars', expressHandlebars({
     defaultLayout: 'main'
