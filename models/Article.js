@@ -9,11 +9,13 @@ let ArticleSchema = new Schema({
     },
     summary:{
         type: String,
-        required: true
     },
     url: {
         type: String,
         required: true
+    },
+    img: {
+        type: String,
     },
     comment: [{
         type: Schema.Types.ObjectId,

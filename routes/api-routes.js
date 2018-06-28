@@ -30,12 +30,12 @@ module.exports = (app) => {
             const $ = cheerio.load(html);
             $("div.story-body").each( (i, element) => {
                 let news = {};
-                let link = $(element).find("a").attr("href");
-                let title = $(element).find("h2.headline").text().trim();
+                let url = $(element).find("a").attr("href");
+                let headline = $(element).find("h2.headline").text().trim();
                 let summary = $(element).find("p.summary").text().trim();
                 let img = $(element).parent().find("figure.media").find("img").attr("src");
-                news.link = link;
-                news.title = title;
+                news.url = url;
+                news.headline = headline;
                 if (summary) {
                     news.summary = summary;
                 };
@@ -46,9 +46,20 @@ module.exports = (app) => {
                     news.img = $(element).find(".wide-thumb").find("img").attr("src");
                 };
                 console.log(news)
+
+                db.Article.create(news)
+                    .then( (dbArticle) =>{
+                        console.log(dbArticle);
+                    })
+                    .catch( (err) => {
+                        return res.json(err);
+                    });
             });
             console.log("Scrape done successfully.");
         });
+        
     });
+
+
 
 }
