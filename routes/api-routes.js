@@ -5,7 +5,7 @@ const path = require('path');
 
 const db = require('../models');
 
-const newsUrl = 'hhttp://www.nytimes.com/';
+const newsUrl = 'https://www.nytimes.com/section/world';
 
 // Local Mongo Database
 mongoose.connect('mongodb://localhost/CrazyNewsifier', (error) => {
@@ -25,27 +25,15 @@ module.exports = (app) => {
         res.send("Finally It works!")
     })
 
-    // app.get('/scrape', (req, res) => {
-    //     request(newsUrl, (error, scrapeResponse, html) => {
-    //         const $ = cheerio.load(html);
-    //         $("article h2").each((i, element) => {
-    //             let news={};
-    //             news.title = $(this).children("a").text();
-    //             news.link = $(this).children("a").attr("href");
-    //             console.log(news)
-    //         })
-    //     })
-    // })
-
-    app.get("/scrape", function (req, res) {
-        request("https://www.nytimes.com/section/world", function (error, response, html) {
-            var $ = cheerio.load(html);
-            $("div.story-body").each(function (i, element) {
-                var news = {};
-                var link = $(element).find("a").attr("href");
-                var title = $(element).find("h2.headline").text().trim();
-                var summary = $(element).find("p.summary").text().trim();
-                var img = $(element).parent().find("figure.media").find("img").attr("src");
+    app.get("/scrape", (req, res) => {
+        request(newsUrl, (error, scrapeResponse, html) => {
+            const $ = cheerio.load(html);
+            $("div.story-body").each( (i, element) => {
+                let news = {};
+                let link = $(element).find("a").attr("href");
+                let title = $(element).find("h2.headline").text().trim();
+                let summary = $(element).find("p.summary").text().trim();
+                let img = $(element).parent().find("figure.media").find("img").attr("src");
                 news.link = link;
                 news.title = title;
                 if (summary) {
@@ -59,7 +47,7 @@ module.exports = (app) => {
                 };
                 console.log(news)
             });
-            console.log("Scrape finished.");
+            console.log("Scrape done successfully.");
         });
     });
 
