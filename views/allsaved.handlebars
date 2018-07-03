@@ -12,7 +12,24 @@
             <a href={{url}} class="card-link">News Url</a>
             <br>
             <br>
-            <button type="button" class="btn btn-danger" id="delete-article-button" data-id={{id}}>Delete this Article</button>
+
+            <div class="card">
+                <div class="card-header">
+                    Notes:
+                </div>
+                <div class="card-body">
+                    <blockquote class="blockquote mb-0">
+                        <p>{{note}}</p>
+                    </blockquote>
+                </div>
+            </div>
+
+            <br>
+
+            <div class="d-flex justify-content-between">
+                <button type="button" class="btn btn-danger" id="delete-article-button" data-id={{id}}>Delete this Article</button>
+                <button type="button" class="btn btn-success" id="add-notes-button" data-id={{id}}>Add Some Notes</button>
+            </div>
         </div>
     </div>
 
