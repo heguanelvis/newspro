@@ -1,0 +1,20 @@
+<div class="container">
+
+
+    {{#each dbArticles}}
+
+    <div class="card" style="margin-bottom: 20px;" id="id-{{tempId}}">
+        <div class="card-body">
+            <h5 class="card-title">{{headline}}</h5>
+            <br>
+            <h6 class="card-subtitle mb-2 text-muted">Summary:</h6>
+            <p class="card-text">{{summary}}</p>
+            <a href={{url}} class="card-link">News Url</a>
+            <br>
+        </div>
+    </div>
+
+    {{/each}}
+
+
+</div>

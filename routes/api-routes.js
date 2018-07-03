@@ -19,12 +19,30 @@ mongoose.connect('mongodb://localhost/CrazyNewsifier', (error) => {
 });
 
 
+// variables to use:
+let allNews = [];
+
 module.exports = (app) => {
 
-    app.get("/scrape", (req, res) => {
+    app.get("/", (req, res) => {
+        res.render("index")
+    });
+
+    app.get("/scraped", (req, res) => {
+        setTimeout(() => {
+            res.render("scraped", { allNews: allNews })
+        }, 2000);
+    })
+
+    app.get("/api-scrape", (req, res) => {
+        allNews = [];
+
         request(newsUrl, (error, scrapeResponse, html) => {
             const $ = cheerio.load(html);
-            $("div.story-body").each( (i, element) => {
+            $("div.story-body").each((i, element) => {
+                if (i >= 10) {
+                    return;
+                };
                 let news = {};
                 let url = $(element).find("a").attr("href");
                 let headline = $(element).find("h2.headline").text().trim();
@@ -32,6 +50,7 @@ module.exports = (app) => {
                 let img = $(element).parent().find("figure.media").find("img").attr("src");
                 news.url = url;
                 news.headline = headline;
+                news.tempId = i;
                 if (summary) {
                     news.summary = summary;
                 };
@@ -41,30 +60,45 @@ module.exports = (app) => {
                 else {
                     news.img = $(element).find(".wide-thumb").find("img").attr("src");
                 };
-                console.log(news)
-
-                db.Article.create(news)
-                    .then( (dbArticle) =>{
-                        console.log(dbArticle);
-                    })
-                    .catch( (err) => {
-                        return res.json(err);
-                    });
+                allNews.push(news)
             });
             console.log("Scrape done successfully.");
-        });
-        
+        })
+
+        setTimeout(() => {
+            res.send(allNews)
+        }, 1500);
     });
 
-    app.get("/articles", function (req, res) {
+    
+    app.get("/api/saved/:id", (req, res) => {
+        let saveId = req.params.id;
+        console.log(saveId)
+        let savedArticle = allNews.find(e => e.tempId==saveId);
+
+        db.Article.create(savedArticle)
+        .then(dbArticle => {console.log(dbArticle)})
+        .catch(err => {
+            return res.json(err);
+        });
+    })
+
+    app.get("/allsaved", (req, res) => {
         db.Article.find({})
-            .then(function (dbArticle) {
-                res.json(dbArticle);
+            .then(dbArticles => {
+                res.render("allsaved", { dbArticles: dbArticles })
             })
-            .catch(function (err) {
-                res.json(err);
-            });
-    });
+    })
+
+    // app.get("/articles", function (req, res) {
+    //     db.Article.find({})
+    //         .then(function (dbArticle) {
+    //             res.render("index", dbArticle);
+    //         })
+    //         .catch(function (err) {
+    //             res.render("index", err);
+    //         });
+    // });
 
     // Route for grabbing a specific Article by id, populate it with it's note
     app.get("/articles/:id", function (req, res) {

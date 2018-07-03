@@ -1,73 +1,56 @@
-// Grab the articles as a json
-$.getJSON("/articles", function (data) {
-    // For each one
-    for (var i = 0; i < data.length; i++) {
-        // Display the apropos information on the page
-        $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].headline + "<br />" + data[i].url + "</p>");
+$("document").ready(() => {
+
+    let saveArticleIdArr = [];
+    let saveArticleIdStr = sessionStorage.getItem("saveArticleIdStr")
+    if(saveArticleIdStr){
+        needToDeleteArr = saveArticleIdStr.split(",");
+        needToDeleteArr.map(i => $("#id-"+i).remove());
     }
-});
 
 
-// Whenever someone clicks a p tag
-$(document).on("click", "p", function () {
-    // Empty the notes from the note section
-    $("#notes").empty();
-    // Save the id from the p tag
-    var thisId = $(this).attr("data-id");
-
-    // Now make an ajax call for the Article
-    $.ajax({
-        method: "GET",
-        url: "/articles/" + thisId
+    console.log("Page Loaded")
+    $("#scrape-button").click(() => {
+        sessionStorage.clear();
+        console.log("Clicked Scrape Articles!")
+        $.get("/api-scrape")
+            .then(result => {
+                if (result) {
+                    console.log(result);
+                }
+            })
+            .catch(err => console.log(err))
     })
-        // With that done, add the note information to the page
-        .then(function (data) {
-            console.log(data.note);
-            // If there's a note in the article
 
-            // The title of the article
-            $("#notes").append("<h2>" + data.headline + "</h2>");
-            // An input to enter a new title
-            $("#notes").append("<input id='titleinput' name='title' >");
-            // A textarea to add a new note body
-            $("#notes").append("<textarea id='bodyinput' name='body'></textarea>");
-            // A button to submit a new note, with the id of the article saved to it
-            $("#notes").append("<button data-id='" + data._id + "' id='savenote'>Save Note</button>");
+    $("#scrape-ok-button").click(() => {
+        location.href = "/scraped";
+    })
 
-            if (data.note) {
-                // Place the title of the note in the title input
-                $("#titleinput").val(data.note[0].title);
-                // Place the body of the note in the body textarea
-                $("#bodyinput").text(data.note[0].body);
-            };
-        });
-});
-
-// When you click the savenote button
-$(document).on("click", "#savenote", function () {
-    // Grab the id associated with the article from the submit button
-    var thisId = $(this).attr("data-id");
-
-    // Run a POST request to change the note, using what's entered in the inputs
-    $.ajax({
-        method: "POST",
-        url: "/articles/" + thisId,
-        data: {
-            // Value taken from title input
-            title: $("#titleinput").val(),
-            // Value taken from note textarea
-            body: $("#bodyinput").val()
+    $(document).on("click","#save-article-button", event=> {
+        console.log("Saved This Article!");
+        let clickedButton = event.target;
+        console.log(clickedButton);
+        let saved = $(clickedButton).data("save");
+        console.log(saved)
+        saved = "true";
+        let saveArticleId = $(clickedButton).attr("tempId");
+        console.log(saveArticleId)
+        if (saved === "true") {
+            $(clickedButton).parent().parent().remove();
+            if(saveArticleIdStr){
+                saveArticleIdArr = saveArticleIdStr.split(",")
+            }
+            saveArticleIdArr.push(saveArticleId);
+            saveArticleIdStr = saveArticleIdArr.join();
+            sessionStorage.setItem("saveArticleIdStr", saveArticleIdStr)
         }
-    })
-        // With that done
-        .then(function (data) {
-            // Log the response
-            console.log(data);
-            // Empty the notes section
-            $("#notes").empty();
-        });
 
-    // Also, remove the values entered in the input and textarea for note entry
-    $("#titleinput").val("");
-    $("#bodyinput").val("");
-});
+        setTimeout(() => {
+            $.get("/api/saved/" + saveArticleId)
+                .then(result => {
+                    console.log(saveArticleId)
+                    console.log(result);
+                })
+        }, 500);
+    })
+
+})
