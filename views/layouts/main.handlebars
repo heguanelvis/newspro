@@ -31,7 +31,7 @@
             <a class="nav-link active" href="#">Crazy Newsifier</a>
             <a class="nav-link" href="#">Home</a>
             <a class="nav-link" href="/allsaved">Saved Articles</a>
-            
+
             {{!-- Scrape Modal --}}
             <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal" id="scrape-button">
                 Scrape Articles
@@ -57,8 +57,22 @@
             </div>
             {{!-- Above is the Scrape Modal --}}
 
+
         </nav>
         {{!-- Above is the Nav Bar --}}
+
+        {{!-- Alert Save--}}
+        <div class="container alert alert-info alert-dismissible collapse" role="alert" style="margin-top:20px">
+            <strong>Article Added!</strong> Click on Saved Articles to read them!
+        </div>
+        {{!-- Above is the Alert Save--}}
+
+
+        {{!-- Alert Delete--}}
+        <div class="container alert alert-warning alert-dismissible collapse" role="alert" style="margin-top:20px">
+            <strong>Article Removed!</strong> Scrape and add more articles you like!
+        </div>
+        {{!-- Above is the Alert Delete--}}
 
         {{!-- Jumbotron --}}
         <div class="jumbotron text-center">

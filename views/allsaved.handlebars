@@ -3,7 +3,7 @@
 
     {{#each dbArticles}}
 
-    <div class="card" style="margin-bottom: 20px;" id="id-{{tempId}}">
+    <div class="card" style="margin-bottom: 20px;">
         <div class="card-body">
             <h5 class="card-title">{{headline}}</h5>
             <br>
@@ -11,6 +11,8 @@
             <p class="card-text">{{summary}}</p>
             <a href={{url}} class="card-link">News Url</a>
             <br>
+            <br>
+            <button type="button" class="btn btn-danger" id="delete-article-button" data-id={{id}}>Delete this Article</button>
         </div>
     </div>
 

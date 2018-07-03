@@ -2,9 +2,9 @@ $("document").ready(() => {
 
     let saveArticleIdArr = [];
     let saveArticleIdStr = sessionStorage.getItem("saveArticleIdStr")
-    if(saveArticleIdStr){
+    if (saveArticleIdStr) {
         needToDeleteArr = saveArticleIdStr.split(",");
-        needToDeleteArr.map(i => $("#id-"+i).remove());
+        needToDeleteArr.map(i => $("#id-" + i).remove());
     }
 
 
@@ -25,7 +25,7 @@ $("document").ready(() => {
         location.href = "/scraped";
     })
 
-    $(document).on("click","#save-article-button", event=> {
+    $(document).on("click", "#save-article-button", event => {
         console.log("Saved This Article!");
         let clickedButton = event.target;
         console.log(clickedButton);
@@ -36,7 +36,7 @@ $("document").ready(() => {
         console.log(saveArticleId)
         if (saved === "true") {
             $(clickedButton).parent().parent().remove();
-            if(saveArticleIdStr){
+            if (saveArticleIdStr) {
                 saveArticleIdArr = saveArticleIdStr.split(",")
             }
             saveArticleIdArr.push(saveArticleId);
@@ -44,10 +44,36 @@ $("document").ready(() => {
             sessionStorage.setItem("saveArticleIdStr", saveArticleIdStr)
         }
 
+        $('.alert-info').show();
+        setTimeout(() => {
+            $('.alert-info').hide();
+        }, 500);
+
         setTimeout(() => {
             $.get("/api/saved/" + saveArticleId)
                 .then(result => {
                     console.log(saveArticleId)
+                    console.log(result);
+                })
+        }, 500);
+    })
+
+    $(document).on("click", "#delete-article-button", event => {
+        console.log("Deleted This Article!");
+        let clickedButton = event.target;
+        console.log(clickedButton);
+        let deleteId = $(clickedButton).data("id");
+        console.log(deleteId);
+        $(clickedButton).parent().parent().remove();
+
+        $('.alert-warning').show();
+        setTimeout(() => {
+            $('.alert-warning').hide();
+        }, 500);
+
+        setTimeout(() => {
+            $.get("/api/delete/" + deleteId)
+                .then(result => {
                     console.log(result);
                 })
         }, 500);

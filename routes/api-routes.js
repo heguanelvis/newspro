@@ -90,15 +90,15 @@ module.exports = (app) => {
             })
     })
 
-    // app.get("/articles", function (req, res) {
-    //     db.Article.find({})
-    //         .then(function (dbArticle) {
-    //             res.render("index", dbArticle);
-    //         })
-    //         .catch(function (err) {
-    //             res.render("index", err);
-    //         });
-    // });
+    app.get("/api/delete/:id", (req, res) => {
+        let deleteId = req.params.id;
+        console.log(deleteId);
+        db.Article.findByIdAndRemove(deleteId, (err, res) => {
+            if (err) throw err;
+            console.log("Article deleted successfully!");
+        });
+    })
+
 
     // Route for grabbing a specific Article by id, populate it with it's note
     app.get("/articles/:id", function (req, res) {
