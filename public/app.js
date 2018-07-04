@@ -35,6 +35,7 @@ $("document").ready(() => {
         let saveArticleId = $(clickedButton).attr("tempId");
         console.log(saveArticleId)
         if (saved === "true") {
+            swal("Article Saved!", "Now go to Saved Articles to read your favorite articles!", "success");
             $(clickedButton).parent().parent().remove();
             if (saveArticleIdStr) {
                 saveArticleIdArr = saveArticleIdStr.split(",")
@@ -43,11 +44,6 @@ $("document").ready(() => {
             saveArticleIdStr = saveArticleIdArr.join();
             sessionStorage.setItem("saveArticleIdStr", saveArticleIdStr)
         }
-
-        $('.alert-info').show();
-        setTimeout(() => {
-            $('.alert-info').hide();
-        }, 500);
 
         setTimeout(() => {
             $.get("/api/saved/" + saveArticleId)
@@ -64,12 +60,9 @@ $("document").ready(() => {
         console.log(clickedButton);
         let deleteId = $(clickedButton).data("id");
         console.log(deleteId);
-        $(clickedButton).parent().parent().remove();
+        $(clickedButton).parent().parent().parent().remove();
 
-        $('.alert-warning').show();
-        setTimeout(() => {
-            $('.alert-warning').hide();
-        }, 500);
+        swal("Article Deleted!", "Scrape and add more articles you like!", "warning");
 
         setTimeout(() => {
             $.get("/api/delete/" + deleteId)
@@ -78,5 +71,6 @@ $("document").ready(() => {
                 })
         }, 500);
     })
+
 
 })
