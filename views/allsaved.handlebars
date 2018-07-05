@@ -28,7 +28,43 @@
 
             <div class="d-flex justify-content-between">
                 <button type="button" class="btn btn-danger" id="delete-article-button" data-id={{id}}>Delete this Article</button>
-                <button type="button" class="btn btn-success" id="add-notes-button" data-id={{id}}>Add Some Notes</button>
+                
+                <div class="notes-modal">
+                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModalCenter">
+                        Add Some Notes!
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Add some notes to this article!</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="form-group">
+                                            <label for="notes-title" class="col-form-label">Title of Notes (Required):</label>
+                                            <textarea class="form-control" id="notes-title-{{id}}"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="notes-text" class="col-form-label">Notes Content (Required):</label>
+                                            <textarea class="form-control" id="notes-text-{{id}}"></textarea>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-info" id="save-notes-button" data-id={{id}}>Save Notes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

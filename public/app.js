@@ -35,7 +35,6 @@ $("document").ready(() => {
         let saveArticleId = $(clickedButton).attr("tempId");
         console.log(saveArticleId)
         if (saved === "true") {
-            swal("Article Saved!", "Now go to Saved Articles to read your favorite articles!", "success");
             $(clickedButton).parent().parent().remove();
             if (saveArticleIdStr) {
                 saveArticleIdArr = saveArticleIdStr.split(",")
@@ -51,6 +50,9 @@ $("document").ready(() => {
                     console.log(saveArticleId)
                     console.log(result);
                 })
+            setTimeout(() => {
+                swal("Article Saved!", "Now go to Saved Articles to read your favorite articles!", "success");
+            }, 200);
         }, 500);
     })
 
@@ -62,14 +64,32 @@ $("document").ready(() => {
         console.log(deleteId);
         $(clickedButton).parent().parent().parent().remove();
 
-        swal("Article Deleted!", "Scrape and add more articles you like!", "warning");
-
         setTimeout(() => {
             $.get("/api/delete/" + deleteId)
                 .then(result => {
                     console.log(result);
                 })
+            setTimeout(() => {
+                swal("Article Deleted!", "Scrape and add more articles you like!", "warning");
+            }, 200);
         }, 500);
+    })
+
+    $(document).on("click", "#save-notes-button", event => {
+        console.log("Saved This Note!");
+        let clickedButton = event.target;
+        let articleId = $(clickedButton).data("id");
+        console.log(articleId);
+        let notesTitle = $("#notes-title-"+articleId).val().trim();
+        let notesText = $("#notes-text-"+articleId).val().trim();
+        console.log(notesTitle, notesText);
+        // Authentication of input:
+        if (notesTitle != "" && notesText != "") {
+            console.log("validated!")
+        } else {
+            console.log("Required not filled!");
+            swal("Input Incomplete!", "You need to fill the required inputs!", "warning")
+        }
     })
 
 
