@@ -1,4 +1,44 @@
 /*modal*/
+body{
+    background-image: url('/images/patrick-tomasso-71909-unsplash.jpg');
+    background-size: 2000px;
+}
+
+.bg-style{
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.card-bg-style{
+    background-color: rgba(255, 250, 250, 0.8);
+    border-radius: 30px;
+}
+
+.add-card-bg-style{
+    background-color: rgba(255, 250, 250, 0.8);
+    border-color:#6c757d;
+    border-bottom: none;
+}
+
+.card-link-color{
+    color: #6c757d;
+}
+
+.card-link-color:hover {
+    color: black;
+}
+
+.nav-color{
+    color: whitesmoke;
+}
+
+.nav-color:hover {
+    color: gray;
+}
+
+.jumbotron{
+    color: whitesmoke;
+}
+
 .backdrop {
     display: none;
     position: fixed;

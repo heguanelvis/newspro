@@ -3,16 +3,16 @@
 
 {{#each dbArticles}}
 
-    <div class="card col-lg-3 col-md-4 col-sm-6 col-xs-6" style="margin-bottom: 20px;">
+    <div class="card col-lg-3 col-md-4 col-sm-6 col-xs-6 card-bg-style" style="margin-bottom: 20px;">
         <div class="card-body">
             <img class="card-img-top" src="{{img}}" alt="{{headline}}">
             <h5 class="card-title">{{headline}}</h5>
             <p class="card-text">{{summary}}</p>
             
-            <a href={{url}} class="card-link">News Url</a>
+            <a href={{url}} target="_blank" class="card-link card-link-color">News Url</a>
             
             {{!-- Show Notes Modal --}}
-            <a href="#" class="card-link show-notes-button" data-id={{id}}>See the Notes to This Article!</a>
+            <a href="#" class="card-link show-notes-button card-link-color" data-id={{id}}>See the Notes to This Article!</a>
             
 
             <div style="display:none" id="note-info-modal-{{id}}">
@@ -20,7 +20,7 @@
                 <div>
                     {{#if this/notes}}
                         {{#each this/notes}}
-                            <div class="card">
+                            <div class="card add-card-bg-style">
                                 <div class="card-header">
                                     {{title}}
                                 </div>
@@ -32,13 +32,13 @@
                             </div>
                         {{/each}}
                     {{else}}
-                        <div class="card">
+                        <div class="card add-card-bg-style">
                             <div class="card-header">
                                 No Notes yet. Add one now?
                             </div>
                         </div>
                     {{/if}}
-                    <button class="btn btn-outline-light hide-notes-button" style="width:100%" data-id={{id}}>Hide Notes</button>
+                    <button class="btn btn-outline-secondary hide-notes-button" style="width:100%" data-id={{id}}>Hide Notes</button>
                 </div>
             </div>
             {{!-- Above is the Show Notes Modal --}}
@@ -49,8 +49,8 @@
             <div>
                 
                 {{!-- Add Notes Modal --}}
-                <button class="btn btn-info add-notes-button btn-responsive" style="margin-top: 5px; margin-bottom: 5px;" data-id={{id}}>Add Some Notes or Update Your Notes</button>
-                <button type="button" class="btn btn-danger btn-responsive" style="margin-top: 5px; margin-bottom: 5px;" id="delete-article-button" data-id={{id}}>Delete this Article</button>
+                <button class="btn btn-outline-secondary add-notes-button btn-responsive" style="margin-top: 5px; margin-bottom: 5px;" data-id={{id}}>Add Some Notes or Update Your Notes</button>
+                <button type="button" class="btn btn-outline-secondary btn-responsive" style="margin-top: 5px; margin-bottom: 5px;" id="delete-article-button" data-id={{id}}>Delete this Article</button>
                 <div class="save-note-modal" id="save-note-modal-{{id}}">
                     <div class="modal-header">
                         <h3 class="modal-title">Write Some Notes to this article!</h3>
@@ -68,7 +68,7 @@
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-info" id="save-notes-button" data-id={{id}}>Save Notes</button>
+                        <button type="button" class="btn btn-outline-secondary" id="save-notes-button" data-id={{id}}>Save Notes</button>
                     </div>
                 </div>
                 {{!-- Above is Add Notes Modal --}}

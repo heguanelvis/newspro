@@ -36,13 +36,13 @@
         {{!-- Above is backdrop --}}
 
         {{!-- Nav Bar --}}
-        <nav class="nav">
-            <a class="nav-link active" href="#">Crazy Newsifier</a>
-            <a class="nav-link" href="#">Home</a>
-            <a class="nav-link" href="/allsaved">Saved Articles</a>
+        <nav class="nav bg-style">
+            <a class="nav-link active nav-color" href="/">Crazy Newsifier</a>
+            <a class="nav-link nav-color" href="/">Home</a>
+            <a class="nav-link nav-color" href="/allsaved">Saved Articles</a>
 
             {{!-- Scrape Modal --}}
-            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal" id="scrape-button">
+            <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal" id="scrape-button">
                 Scrape Articles
             </button>
             
@@ -59,7 +59,7 @@
                             You successfully scraped 10 articles from New York Times!
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-info" data-dismiss="modal" id="scrape-ok-button">OK</button>
+                            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" id="scrape-ok-button">OK</button>
                         </div>
                     </div>
                 </div>
@@ -72,7 +72,7 @@
 
 
         {{!-- Jumbotron --}}
-        <div class="jumbotron text-center">
+        <div class="jumbotron text-center bg-style">
             <h1 class="display-4">Crazy Newsifier</h1>
             <p class="lead">Use this app to scrape articles from New York Times!</p>
         </div>
