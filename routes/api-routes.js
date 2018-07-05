@@ -6,9 +6,10 @@ const path = require('path');
 const db = require('../models');
 
 const newsUrl = 'https://www.nytimes.com/section/world';
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/CrazyNewsifier";
 
-// Local Mongo Database
-mongoose.connect('mongodb://localhost/CrazyNewsifier', (error) => {
+mongoose.Promise = Promise;
+mongoose.connect(MONGODB_URI, (error) => {
 
     if (error) {
         console.log(error);
