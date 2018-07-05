@@ -1,21 +1,19 @@
-<div class="container">
+<div class="row justify-content-center">
 
 
 {{#each dbArticles}}
 
-    <div class="card" style="margin-bottom: 20px;">
+    <div class="card col-lg-3 col-md-4 col-sm-6 col-xs-6" style="margin-bottom: 20px;">
         <div class="card-body">
+            <img class="card-img-top" src="{{img}}" alt="{{headline}}">
             <h5 class="card-title">{{headline}}</h5>
-            <br>
-            <h6 class="card-subtitle mb-2 text-muted">Summary:</h6>
             <p class="card-text">{{summary}}</p>
             
-            <div class="d-flex justify-content-between">
-                <a href={{url}} class="card-link">News Url</a>
-                
-                {{!-- Show Notes Modal --}}
-                <button class="btn btn-link show-notes-button" data-id={{id}}>See the Notes to This Article!</button>
-            </div>
+            <a href={{url}} class="card-link">News Url</a>
+            
+            {{!-- Show Notes Modal --}}
+            <a href="#" class="card-link show-notes-button" data-id={{id}}>See the Notes to This Article!</a>
+            
 
             <div style="display:none" id="note-info-modal-{{id}}">
                 <br>
@@ -48,11 +46,11 @@
             <br>
             
 
-            <div class="d-flex justify-content-between">
-                <button type="button" class="btn btn-danger" id="delete-article-button" data-id={{id}}>Delete this Article</button>
+            <div>
                 
                 {{!-- Add Notes Modal --}}
-                <button class="btn btn-info add-notes-button" data-id={{id}}>Add Some Notes or Update Your Notes</button>
+                <button class="btn btn-info add-notes-button btn-responsive" style="margin-top: 5px; margin-bottom: 5px;" data-id={{id}}>Add Some Notes or Update Your Notes</button>
+                <button type="button" class="btn btn-danger btn-responsive" style="margin-top: 5px; margin-bottom: 5px;" id="delete-article-button" data-id={{id}}>Delete this Article</button>
                 <div class="save-note-modal" id="save-note-modal-{{id}}">
                     <div class="modal-header">
                         <h3 class="modal-title">Write Some Notes to this article!</h3>

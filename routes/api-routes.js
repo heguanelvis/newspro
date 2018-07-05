@@ -32,7 +32,7 @@ module.exports = (app) => {
         setTimeout(() => {
             res.render("scraped", { allNews: allNews })
         }, 2000);
-    })
+    });
 
     app.get("/api-scrape", (req, res) => {
         allNews = [];
@@ -63,7 +63,7 @@ module.exports = (app) => {
                 allNews.push(news)
             });
             console.log("Scrape done successfully.");
-        })
+        });
 
         setTimeout(() => {
             res.send(allNews)
@@ -72,26 +72,15 @@ module.exports = (app) => {
 
     app.get("/api/saved/:id", (req, res) => {
         let saveId = req.params.id;
-        console.log(saveId)
-        let savedArticle = allNews.find(e => e.tempId==saveId);
+        console.log(saveId);
+        let savedArticle = allNews.find(e => e.tempId == saveId);
 
         db.Article.create(savedArticle)
-        .then(dbArticle => {console.log(dbArticle)})
-        .catch(err => {
-            return res.json(err);
-        });
-    })
-
-    // app.get("/api/notes/:articleId", (req, res) => {
-    //     db.Article.findOne({ _id: req.params.articleId })
-    //         .populate("note")
-    //         .then(function (dbArticle) {
-    //             res.json(dbArticle);
-    //         })
-    //         .catch(function (err) {
-    //             res.json(err);
-    //         });
-    // });
+            .then(dbArticle => { console.log(dbArticle) })
+            .catch(err => {
+                return res.json(err);
+            });
+    });
 
     app.get("/allsaved", (req, res) => {
         db.Article.find({})
@@ -102,7 +91,7 @@ module.exports = (app) => {
                     dbArticles: dbArticles
                 })
             })
-    })
+    });
 
     app.get("/api/delete/:id", (req, res) => {
         let deleteId = req.params.id;
@@ -111,7 +100,7 @@ module.exports = (app) => {
             if (err) throw err;
             console.log("Article deleted successfully!");
         });
-    })
+    });
 
     app.post("/api/notes/:articleId", (req, res) => {
         db.Note.create(req.body)

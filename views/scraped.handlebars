@@ -1,18 +1,15 @@
-<div class="container">
+<div class="row justify-content-center">
 
 
     {{#each allNews}}
 
-    <div class="card" style="margin-bottom: 20px;" id="id-{{tempId}}">
+    <div class="card col-lg-3 col-md-4 col-sm-6 col-xs-6" style="width: 18rem; margin-bottom: 20px;" id="id-{{tempId}}">
+        <img class="card-img-top" src="{{img}}" alt="{{headline}}">
         <div class="card-body">
             <h5 class="card-title">{{headline}}</h5>
-            <br>
-            <h6 class="card-subtitle mb-2 text-muted">Summary:</h6>
             <p class="card-text">{{summary}}</p>
-            <a href={{url}} class="card-link">News Url</a>
-            <br>
-            <br>
-            <button type="button" class="btn btn-info" data-save="false" tempId={{tempId}} id="save-article-button">Save this Article</button>
+            <a href={{url}} class="btn btn-outline-primary btn-responsive" target="_blank" style="margin-bottom:10px;">News Url</a>
+            <button type="button" class="btn btn-info btn-responsive" data-save="false" tempId={{tempId}} id="save-article-button" style="margin-bottom:10px;">Save this Article</button>
         </div>
     </div>
 
