@@ -1,9 +1,7 @@
 <h2>CrazyNewsifier 💥<h2>
-<hr>
 You can view and comment on the lastest news from New York Times!👽👽👽
 
 <h3>How to Use This App❓❓❓<h3>
-<hr>
 ⭐️ Scrape articles by clicking the "Scrape Articles" button.
 ⭐️ Once articles are loaded, read full article by clicking the link in each article's panel and save articles by clicking the "Save Article" button.
 ⭐️ Saved articles can be viewed at the "Saved Articles" page.
