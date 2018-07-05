@@ -10,15 +10,15 @@ You can view and comment on the lastest news from New York Times!👽👽👽
 <a href="https://guarded-brook-89654.herokuapp.com/" target="_blank">Check the Demo Here!</a>
 
 <h3>Technologies and Packages Used</h3>
-1. Node.js
-2. Express.js
-3. Handlebars.js
-4. MongoDB
-5. Mongoose
-6. body-parser
-7. express
-8. express-handlebars
-9. cheerio
-10. request
+⭐️ Node.js
+⭐️ Express.js
+⭐️ Handlebars.js
+⭐️ MongoDB
+⭐️ Mongoose
+⭐️ body-parser
+⭐️ cheerio
+⭐️ request
+⭐️ morgan
+
 
 <h3>Now Go ahead Scrape and Comment on Your Favorite Articles from New York Times!!!🌚🌚🌚</h3>
