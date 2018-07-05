@@ -1,7 +1,7 @@
 <div class="container">
 
 
-    {{#each dbArticles}}
+{{#each dbArticles}}
 
     <div class="card" style="margin-bottom: 20px;">
         <div class="card-body">
@@ -9,67 +9,77 @@
             <br>
             <h6 class="card-subtitle mb-2 text-muted">Summary:</h6>
             <p class="card-text">{{summary}}</p>
-            <a href={{url}} class="card-link">News Url</a>
-            <br>
-            <br>
-
-            <div class="card">
-                <div class="card-header">
-                    Notes:
-                </div>
-                <div class="card-body">
-                    <blockquote class="blockquote mb-0">
-                        <p>{{note}}</p>
-                    </blockquote>
-                </div>
+            
+            <div class="d-flex justify-content-between">
+                <a href={{url}} class="card-link">News Url</a>
+                
+                {{!-- Show Notes Modal --}}
+                <button class="btn btn-link show-notes-button" data-id={{id}}>See the Notes to This Article!</button>
             </div>
 
+            <div style="display:none" id="note-info-modal-{{id}}">
+                <br>
+                <div>
+                    {{#if this/notes}}
+                        {{#each this/notes}}
+                            <div class="card">
+                                <div class="card-header">
+                                    {{title}}
+                                </div>
+                                <div class="card-body">
+                                    <blockquote class="blockquote mb-0">
+                                        <p>{{body}}</p>
+                                    </blockquote>
+                                </div>
+                            </div>
+                        {{/each}}
+                    {{else}}
+                        <div class="card">
+                            <div class="card-header">
+                                No Notes yet. Add one now?
+                            </div>
+                        </div>
+                    {{/if}}
+                    <button class="btn btn-outline-light hide-notes-button" style="width:100%" data-id={{id}}>Hide Notes</button>
+                </div>
+            </div>
+            {{!-- Above is the Show Notes Modal --}}
+
             <br>
+            
 
             <div class="d-flex justify-content-between">
                 <button type="button" class="btn btn-danger" id="delete-article-button" data-id={{id}}>Delete this Article</button>
                 
-                <div class="notes-modal">
-                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModalCenter">
-                        Add Some Notes!
-                    </button>
-
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLongTitle">Add some notes to this article!</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <form>
-                                        <div class="form-group">
-                                            <label for="notes-title" class="col-form-label">Title of Notes (Required):</label>
-                                            <textarea class="form-control" id="notes-title-{{id}}"></textarea>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="notes-text" class="col-form-label">Notes Content (Required):</label>
-                                            <textarea class="form-control" id="notes-text-{{id}}"></textarea>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-info" id="save-notes-button" data-id={{id}}>Save Notes</button>
-                                </div>
+                {{!-- Add Notes Modal --}}
+                <button class="btn btn-info add-notes-button" data-id={{id}}>Add Some Notes or Update Your Notes</button>
+                <div class="save-note-modal" id="save-note-modal-{{id}}">
+                    <div class="modal-header">
+                        <h3 class="modal-title">Write Some Notes to this article!</h3>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="notes-title" class="col-form-label">Title of Notes (Required):</label>
+                                <textarea class="form-control" id="notes-title-{{id}}"></textarea>
                             </div>
-                        </div>
+                            <div class="form-group">
+                                <label for="notes-text" class="col-form-label">Notes Content (Required):</label>
+                                <textarea class="form-control" id="notes-text-{{id}}"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-info" id="save-notes-button" data-id={{id}}>Save Notes</button>
                     </div>
                 </div>
+                {{!-- Above is Add Notes Modal --}}
 
             </div>
         </div>
     </div>
 
-    {{/each}}
+{{/each}}
 
 
 </div>

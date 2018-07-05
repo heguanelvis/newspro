@@ -1,0 +1,33 @@
+/*modal*/
+.backdrop {
+    display: none;
+    position: fixed;
+    background: rgba(0, 0, 0, 0.5);
+    top: 0;
+    height: 100vh;
+    width: 100vw;
+    z-index: 1;
+}
+
+.save-note-modal {
+    display: none;
+    position: fixed;
+    background: white;
+    padding: 10px;
+    width: 260px;
+    top: 100px;
+    left: calc(50% - 140px);
+    z-index: 1;    
+}
+
+.save-note-modal h1 {
+    margin: 0;
+}
+
+
+@media (min-width: 400px) {
+    .save-note-modal {
+        width: 360px;
+        left: calc(50% - 190px);
+    }
+}

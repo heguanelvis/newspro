@@ -80,17 +80,72 @@ $("document").ready(() => {
         let clickedButton = event.target;
         let articleId = $(clickedButton).data("id");
         console.log(articleId);
-        let notesTitle = $("#notes-title-"+articleId).val().trim();
-        let notesText = $("#notes-text-"+articleId).val().trim();
+        let notesTitle = $("#notes-title-" + articleId).val().trim();
+        let notesText = $("#notes-text-" + articleId).val().trim();
         console.log(notesTitle, notesText);
+
         // Authentication of input:
         if (notesTitle != "" && notesText != "") {
             console.log("validated!")
+            $.ajax({
+                method: "POST",
+                url: "/api/notes/" + articleId,
+                data: {
+                    title: notesTitle,
+                    body: notesText
+                }
+            })
+                .then(data => {
+                    console.log(data);
+                });
+
+            setTimeout(() => {
+                $("#notes-title-" + articleId).val("");
+                $("#notes-text-" + articleId).val("");
+                swal("Notes Saved!", "Have a look at the Notes to this Article!", "success")
+
+                setTimeout(() => {
+                    location.href = "/allsaved";
+                }, 1000);
+
+            }, 200);
+
         } else {
             console.log("Required not filled!");
             swal("Input Incomplete!", "You need to fill the required inputs!", "warning")
         }
+    });
+
+    $(document).on("click", ".show-notes-button", event => {
+        console.log("worked?")
+        let clickedButton = event.target;
+        let showNoteId = $(clickedButton).data("id");
+        $("#note-info-modal-" + showNoteId).show();
+    });
+
+    $(document).on("click", ".hide-notes-button", event => {
+        console.log("worked?")
+        let clickedButton = event.target;
+        let hideNoteId = $(clickedButton).data("id");
+        $("#note-info-modal-" + hideNoteId).hide();
     })
 
+    // save-note modal handler
+    $(document).on("click", ".add-notes-button", event => {
+        let backdrop = document.querySelector('.backdrop');
+        let clickedButton = event.target;
+        let addNoteId = $(clickedButton).data("id");
+        let modal = document.querySelector("#save-note-modal-" + addNoteId);
+        const openModal = () => {
+            backdrop.style.display = 'block';
+            modal.style.display = 'block';
+        }
+        const closeModal = () => {
+            backdrop.style.display = 'none';
+            modal.style.display = 'none';
+        }
+        openModal();
+        backdrop.onclick = closeModal;
+    })
 
 })
