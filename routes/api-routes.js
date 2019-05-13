@@ -9,7 +9,7 @@ const newsUrl = 'https://www.nytimes.com/section/world';
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/CrazyNewsifier";
 
 mongoose.Promise = Promise;
-mongoose.connect(MONGODB_URI, (error) => {
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true }, (error) => {
 
     if (error) {
         console.log(error);
@@ -40,15 +40,16 @@ module.exports = (app) => {
 
         request(newsUrl, (error, scrapeResponse, html) => {
             const $ = cheerio.load(html);
-            $("div.story-body").each((i, element) => {
+            console.log($);
+            $("div.e46isfb0 div.css-10wtrbd").each((i, element) => {
                 if (i >= 10) {
                     return;
                 };
                 let news = {};
                 let url = $(element).find("a").attr("href");
-                let headline = $(element).find("h2.headline").text().trim();
-                let summary = $(element).find("p.summary").text().trim();
-                let img = $(element).parent().find("figure.media").find("img").attr("src");
+                let headline = $(element).find("h2.e134j7ei0").text().trim();
+                let summary = $(element).find("p.e134j7ei1").text().trim();
+                let img = $(element).parent().find("figure.photo").find("img").attr("src");
                 news.url = url;
                 news.headline = headline;
                 news.tempId = i;
