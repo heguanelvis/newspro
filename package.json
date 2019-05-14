@@ -1,5 +1,5 @@
 {
-  "name": "CrazyNewsifier",
+  "name": "newspro",
   "version": "1.0.0",
   "description": "View and leave comments on the latest news!",
   "main": "index.js",
@@ -8,15 +8,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/heguanelvis/CrazyNewsifier.git"
+    "url": "git+https://github.com/heguanelvis/newspro.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/heguanelvis/CrazyNewsifier/issues"
+    "url": "https://github.com/heguanelvis/newspro/issues"
   },
-  "homepage": "https://github.com/heguanelvis/CrazyNewsifier#readme",
+  "homepage": "https://github.com/heguanelvis/newspro#readme",
   "dependencies": {
     "body-parser": "^1.18.3",
     "cheerio": "^1.0.0-rc.2",
