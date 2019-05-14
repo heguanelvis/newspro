@@ -1,17 +1,15 @@
 $("document").ready(() => {
 
     let saveArticleIdArr = [];
-    let saveArticleIdStr = sessionStorage.getItem("saveArticleIdStr")
+    let saveArticleIdStr = sessionStorage.getItem("saveArticleIdStr");
     if (saveArticleIdStr) {
         needToDeleteArr = saveArticleIdStr.split(",");
         needToDeleteArr.map(i => $("#id-" + i).remove());
     }
 
-
-    console.log("Page Loaded")
     $("#scrape-button").click(() => {
         sessionStorage.clear();
-        console.log("Clicked Scrape Articles!")
+
         $.get("/api-scrape")
             .then(result => {
                 if (result) {
@@ -19,7 +17,7 @@ $("document").ready(() => {
                 }
             })
             .catch(err => console.log(err))
-    })
+    });
 
     $("#scrape-ok-button").click(() => {
         location.href = "/scraped";
@@ -41,15 +39,16 @@ $("document").ready(() => {
             }
             saveArticleIdArr.push(saveArticleId);
             saveArticleIdStr = saveArticleIdArr.join();
-            sessionStorage.setItem("saveArticleIdStr", saveArticleIdStr)
+            sessionStorage.setItem("saveArticleIdStr", saveArticleIdStr);
         }
 
         setTimeout(() => {
             $.get("/api/saved/" + saveArticleId)
                 .then(result => {
-                    console.log(saveArticleId)
+                    console.log(saveArticleId);
                     console.log(result);
                 })
+
             setTimeout(() => {
                 swal("Article Saved!", "Now go to Saved Articles to read your favorite articles!", "success");
             }, 200);

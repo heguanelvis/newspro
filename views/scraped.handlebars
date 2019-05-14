@@ -3,13 +3,16 @@
 
     {{#each allNews}}
 
-    <div class="card col-lg-3 col-md-4 col-sm-6 col-xs-6 card-bg-style" style="width: 18rem; margin-bottom: 20px;" id="id-{{tempId}}">
+    <div class="card col-lg-3 col-md-4 col-sm-6 col-xs-6 card-bg-style" style="width: 18rem; margin-bottom: 20px;"
+        id="id-{{tempId}}">
         <img class="card-img-top" src="{{img}}" alt="{{headline}}">
         <div class="card-body">
             <h5 class="card-title">{{headline}}</h5>
             <p class="card-text">{{summary}}</p>
-            <a href={{url}} class="btn btn-outline-secondary btn-responsive" target="_blank" style="margin-bottom:10px;">News Url</a>
-            <button type="button" class="btn btn-outline-secondary btn-responsive" data-save="false" tempId={{tempId}} id="save-article-button" style="margin-bottom:10px;">Save this Article</button>
+            <a href={{url}} class="btn btn-outline-secondary btn-responsive" target="_blank"
+                style="margin-bottom:10px;">News Url</a>
+            <button type="button" class="btn btn-outline-secondary btn-responsive" data-save="false" tempId={{tempId}}
+                id="save-article-button" style="margin-bottom:10px;">Save this Article</button>
         </div>
     </div>
 
