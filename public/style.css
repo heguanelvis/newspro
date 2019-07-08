@@ -1,78 +1,77 @@
 /*modal*/
-body{
-    background-image: url('/images/patrick-tomasso-71909-unsplash.jpg');
-    background-size: 2000px;
+body {
+  background-image: url("/images/patrick-tomasso-71909-unsplash.jpg");
+  background-size: 2000px;
 }
 
-.bg-style{
-    background-color: rgba(0, 0, 0, 0.8);
+.bg-style {
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
-.card-bg-style{
-    background-color: rgba(255, 250, 250, 0.8);
-    border-radius: 30px;
+.card-bg-style {
+  background-color: rgba(255, 250, 250, 0.8);
+  border-radius: 30px;
 }
 
-.add-card-bg-style{
-    background-color: rgba(255, 250, 250, 0.8);
-    border-color:#6c757d;
-    border-bottom: none;
+.add-card-bg-style {
+  background-color: rgba(255, 250, 250, 0.8);
+  border-color: #6c757d;
+  border-bottom: none;
 }
 
-.card-link-color{
-    color: #6c757d;
+.card-link-color {
+  color: #6c757d;
 }
 
 .card-link-color:hover {
-    color: black;
+  color: black;
 }
 
-.nav-color{
-    color: whitesmoke;
+.nav-color {
+  color: whitesmoke;
 }
 
 .nav-color:hover {
-    color: gray;
+  color: gray;
 }
 
-.jumbotron{
-    color: whitesmoke;
+.jumbotron {
+  color: whitesmoke;
 }
 
 .backdrop {
-    display: none;
-    position: fixed;
-    background: rgba(0, 0, 0, 0.5);
-    top: 0;
-    height: 100vh;
-    width: 100vw;
-    z-index: 1;
+  display: none;
+  position: fixed;
+  background: rgba(0, 0, 0, 0.5);
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 1;
 }
 
 .save-note-modal {
-    display: none;
-    position: fixed;
-    background: white;
-    padding: 10px;
-    width: 260px;
-    top: 100px;
-    left: calc(50% - 140px);
-    z-index: 1;    
+  display: none;
+  position: fixed;
+  background: white;
+  padding: 10px;
+  width: 260px;
+  top: 100px;
+  left: calc(50% - 140px);
+  z-index: 1;
 }
 
 .save-note-modal h1 {
-    margin: 0;
+  margin: 0;
 }
 
-
 @media (min-width: 400px) {
-    .save-note-modal {
-        width: 360px;
-        left: calc(50% - 190px);
-    }
+  .save-note-modal {
+    width: 360px;
+    left: calc(50% - 190px);
+  }
 }
 
 .btn-responsive {
-    white-space: normal !important;
-    word-wrap: break-word;
+  white-space: normal !important;
+  word-wrap: break-word;
 }
