@@ -10,6 +10,7 @@ const scrape = newsUrl => {
 
       $("div.css-4jyr1y").each((i, element) => {
         if (i >= 10) return;
+
         const url = `https://www.nytimes.com${$(element)
           .find("a")
           .attr("href")}`;
