@@ -7,7 +7,7 @@ View and comment on the lastest news from New York Times!
 - Saved articles can be viewed at the "Saved Articles" page.
 - Notes can be added or updated on saved articles by clicking the "Add Some Notes or Update Notes" button.
 - Saved articles can be deleted by clicking the "Delete Article" button.
-- [Check the Demo Here!](https://guarded-brook-89654.herokuapp.com)
+- [Check the Demo Here!](https://guan-newspro.herokuapp.com/)
 
 ### Technologies and Packages Used
 - Node
