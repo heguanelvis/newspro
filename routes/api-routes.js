@@ -38,13 +38,10 @@ module.exports = app => {
 
   app.get("/api/saved/:id", (req, res) => {
     let saveId = req.params.id;
-    console.log(saveId);
     let savedArticle = allNews.find(e => e.tempId == saveId);
 
     db.Article.create(savedArticle)
-      .then(dbArticle => {
-        console.log(dbArticle);
-      })
+      .then(dbArticle => {})
       .catch(err => {
         return res.json(err);
       });
@@ -54,7 +51,6 @@ module.exports = app => {
     db.Article.find({})
       .populate("notes")
       .then(dbArticles => {
-        console.log(dbArticles);
         res.render("allsaved", {
           dbArticles: dbArticles
         });
@@ -63,10 +59,8 @@ module.exports = app => {
 
   app.get("/api/delete/:id", (req, res) => {
     let deleteId = req.params.id;
-    console.log(deleteId);
     db.Article.findByIdAndRemove(deleteId, (err, res) => {
       if (err) throw err;
-      console.log("Article deleted successfully!");
     });
   });
 

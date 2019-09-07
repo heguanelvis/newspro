@@ -8,8 +8,9 @@ const scrape = newsUrl => {
       const $ = cheerio.load(html);
       let store = [];
 
-      $("div.css-4jyr1y").each((i, element) => {
+      $("div.css-1l4spti").each((i, element) => {
         if (i >= 10) return;
+
         try {
           const url = `https://www.nytimes.com${$(element)
             .find("a")
