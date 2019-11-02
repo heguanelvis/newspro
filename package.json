@@ -23,7 +23,7 @@
     "express": "^4.16.3",
     "express-handlebars": "^3.0.0",
     "extend": "^3.0.2",
-    "mongoose": "^5.5.4",
+    "mongoose": "^5.7.5",
     "morgan": "^1.9.1",
     "request": "^2.87.0",
     "uuid": "^3.3.2"
